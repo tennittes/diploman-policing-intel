@@ -9,7 +9,7 @@ function runTicker() {
     const policeData = JSON.parse(fs.readFileSync(policingPath, 'utf8'));
     policeData.records.forEach(rec => {
       headlines.push({
-        date: rec.reportDate,
+        date: rec.reportingDate || rec.incidenceDate, // Aligned with the new reporting/incidence date separation
         category: 'POLICING INTELLIGENCE',
         text: `${rec.state} Command (${rec.metrics.controlRating}): ${rec.headline}`,
         url: '/p/state-policing-intelligence.html'
