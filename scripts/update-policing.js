@@ -39,18 +39,29 @@ async function run() {
     throw err;
   }
 
+  // Umbrella reporting date enforcement (aligns with current operational batch date)
+  const umbrellaReportingDate = "2026-11-16";
+  if (newData.records && Array.isArray(newData.records)) {
+    newData.records = newData.records.map(record => ({
+      ...record,
+      reportingDate: umbrellaReportingDate
+    }));
+  }
+
   const masterPath = path.join('data', 'master-policing-telemetry.json');
-  let masterData = { records: [] };
+  let masterData = { lastUpdated: umbrellaReportingDate, records: [] };
   if (fs.existsSync(masterPath)) {
     masterData = JSON.parse(fs.readFileSync(masterPath, 'utf8'));
   }
+
+  masterData.lastUpdated = umbrellaReportingDate;
 
   if (newData.records && Array.isArray(newData.records)) {
     masterData.records.unshift(...newData.records);
   }
 
   fs.writeFileSync(masterPath, JSON.stringify(masterData, null, 2));
-  console.log('Successfully updated data/master-policing-telemetry.json.');
+  console.log('Successfully updated data/master-policing-telemetry.json with incidence and reporting date separation.');
 
   // Automatically trigger the ticker feed generator to refresh live-ticker-feed.json
   console.log('Executing ticker feed update script...');
