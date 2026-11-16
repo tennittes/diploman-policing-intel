@@ -1,35 +1,44 @@
-name: Update Policing Intelligence Vault
+name: Diploman Policing Intel Pipeline
 
 on:
-  push:
-    paths:
-      - 'data/incoming-police-raw.txt'
-  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at 00:00 UTC
+  workflow_dispatch: # Allows manual trigger from GitHub UI
 
 jobs:
-  build:
+  run-policing-pipeline:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to commit and push generated updates back to the repo
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm install @google/genai
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+          else
+            npm install @google/genai
+          fi
 
-      - name: Run Policing Extraction Engine
+      - name: Execute Extraction & Telemetry Scripts
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node scripts/update-policing.js
-
-      - name: Commit and Push Updated Data Vault
         run: |
-          git config --global user.name 'Diploman Bot'
-          git config --global user.email 'bot@diplomantimes.com'
-          git add data/
-          git commit -m "Automated policing telemetry update via Gemini [skip ci]"
+          node scripts/update-policing.js
+          node scripts/update-ticker.js
+
+      - name: Commit & Push Master Data Updates
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add nov2026/master-data.json data/master-policing-telemetry.json || true
+          git diff --staging --quiet || git commit -m "chore: automated daily policing intel telemetry update [skip ci]"
           git push
