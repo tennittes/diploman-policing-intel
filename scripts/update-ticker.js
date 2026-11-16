@@ -7,14 +7,20 @@ function runTicker() {
 
   if (fs.existsSync(policingPath)) {
     const policeData = JSON.parse(fs.readFileSync(policingPath, 'utf8'));
-    policeData.records.forEach(rec => {
-      headlines.push({
-        date: rec.reportingDate || rec.incidenceDate, // Aligned with the new reporting/incidence date separation
-        category: 'POLICING INTELLIGENCE',
-        text: `${rec.state} Command (${rec.metrics.controlRating}): ${rec.headline}`,
-        url: '/p/state-policing-intelligence.html'
+    if (policeData && Array.isArray(policeData.records)) {
+      policeData.records.forEach(rec => {
+        const stateName = rec.state || 'State';
+        const controlRating = rec.metrics && rec.metrics.controlRating ? rec.metrics.controlRating : 'ACTIVE';
+        const headlineText = rec.headline || 'Operational telemetry update compiled.';
+        
+        headlines.push({
+          date: rec.reportingDate || rec.incidenceDate || new Date().toISOString().split('T')[0],
+          category: 'POLICING INTELLIGENCE',
+          text: `${stateName} Command (${controlRating}): ${headlineText}`,
+          url: '/p/state-policing-intelligence.html'
+        });
       });
-    });
+    }
   }
 
   // Sort descending by date
@@ -25,7 +31,13 @@ function runTicker() {
     items: headlines.slice(0, 20) // Keep top 20 active ticker items
   };
 
-  const outputPath = path.join('data', 'live-ticker-feed.json');
+  // Ensure the 'data' directory exists prior to writing output
+  const dir = 'data';
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  const outputPath = path.join(dir, 'live-ticker-feed.json');
   fs.writeFileSync(outputPath, JSON.stringify(tickerOutput, null, 2));
   console.log('Successfully generated live ticker feed JSON.');
 }
