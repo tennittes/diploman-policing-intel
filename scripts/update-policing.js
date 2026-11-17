@@ -42,13 +42,44 @@ async function run() {
   // Dynamically generate current UTC date instead of hardcoding
   const now = new Date();
   const currentReportingDate = now.toISOString().split('T')[0];
+  const dayNumber = now.getUTCDate();
+  
+  // Format display date (e.g., "Tuesday, November 17, 2026")
+  const displayDate = now.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC'
+  });
 
-  if (newData.records && Array.isArray(newData.records)) {
-    newData.records = newData.records.map(record => ({
-      ...record,
-      reportingDate: record.reportingDate || currentReportingDate
-    }));
-  }
+  // Normalize incoming records to match the B4 schema requirements
+  let incomingRecords = newData.records || newData.globalCodeData_B4 || [];
+  
+  incomingRecords = incomingRecords.map(record => {
+    // Remove reportingDate if present
+    delete record.reportingDate;
+
+    const stateName = record.stateName || record.state || "FCT Abuja";
+    const stateKey = record.stateKey || stateName.toUpperCase();
+
+    return {
+      dayNumber: record.dayNumber || dayNumber,
+      stateKey: stateKey,
+      stateName: stateName,
+      displayDate: record.displayDate || displayDate,
+      command: record.command,
+      commandLead: record.commandLead,
+      incidenceDate: record.incidenceDate,
+      iccsCategory: record.iccsCategory,
+      clearanceStatus: record.clearanceStatus,
+      latencyHours: record.latencyHours,
+      metrics: record.metrics,
+      headline: record.headline,
+      impactVector: record.impactVector,
+      securityAnalysis: record.securityAnalysis
+    };
+  });
 
   // Ensure the target directory exists
   const targetDir = path.join('nov2026');
@@ -57,11 +88,16 @@ async function run() {
   }
 
   const masterPath = path.join('nov2026', 'master-data.json');
-  let masterData = { lastUpdated: currentReportingDate, activeMonth: "November 2026", records: [] };
+  let masterData = { 
+    lastUpdated: currentReportingDate, 
+    activeMonth: "November 2026", 
+    globalCodeData_B4: [] 
+  };
   
   if (fs.existsSync(masterPath)) {
     try {
-      masterData = JSON.parse(fs.readFileSync(masterPath, 'utf8'));
+      const existing = JSON.parse(fs.readFileSync(masterPath, 'utf8'));
+      masterData.globalCodeData_B4 = existing.globalCodeData_B4 || existing.records || [];
     } catch (e) {
       console.warn('Existing master-data.json could not be parsed, initializing fresh container.');
     }
@@ -70,12 +106,12 @@ async function run() {
   masterData.lastUpdated = currentReportingDate;
   masterData.activeMonth = "November 2026";
 
-  if (newData.records && Array.isArray(newData.records)) {
-    masterData.records.unshift(...newData.records);
+  if (incomingRecords.length > 0) {
+    masterData.globalCodeData_B4.unshift(...incomingRecords);
   }
 
   fs.writeFileSync(masterPath, JSON.stringify(masterData, null, 2));
-  console.log('Successfully updated nov2026/master-data.json with dynamic telemetry records.');
+  console.log('Successfully updated nov2026/master-data.json with dynamic telemetry records (B4 format).');
 
   // Automatically trigger the ticker feed generator to refresh live-ticker-feed.json
   console.log('Executing ticker feed update script...');
