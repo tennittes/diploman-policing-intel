@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 function runTicker() {
-  const policingPath = path.join('data', 'master-policing-telemetry.json');
+  const policingPath = path.join('nov2026', 'master-data.json');
   let headlines = [];
 
   if (fs.existsSync(policingPath)) {
