@@ -7,14 +7,18 @@ function runTicker() {
 
   if (fs.existsSync(policingPath)) {
     const policeData = JSON.parse(fs.readFileSync(policingPath, 'utf8'));
-    if (policeData && Array.isArray(policeData.records)) {
-      policeData.records.forEach(rec => {
-        const stateName = rec.state || 'State';
+    
+    // Support both the new B4 structure and legacy records array
+    const records = policeData.globalCodeData_B4 || policeData.records || [];
+
+    if (Array.isArray(records)) {
+      records.forEach(rec => {
+        const stateName = rec.stateName || rec.state || 'State';
         const controlRating = rec.metrics && rec.metrics.controlRating ? rec.metrics.controlRating : 'ACTIVE';
         const headlineText = rec.headline || 'Operational telemetry update compiled.';
         
         headlines.push({
-          date: rec.reportingDate || rec.incidenceDate || new Date().toISOString().split('T')[0],
+          date: rec.incidenceDate || new Date().toISOString().split('T')[0],
           category: 'POLICING INTELLIGENCE',
           text: `${stateName} Command (${controlRating}): ${headlineText}`,
           url: '/p/state-policing-intelligence.html'
@@ -24,7 +28,7 @@ function runTicker() {
   }
 
   // Sort descending by date
-  headlines.sort((a, b) => new Date(b.date) - new Date(a.date));
+  headlines.sort((a, b) => new Date(b.date) - new Date(b.date === a.date ? 0 : b.date));
 
   const tickerOutput = {
     lastUpdated: new Date().toISOString(),
