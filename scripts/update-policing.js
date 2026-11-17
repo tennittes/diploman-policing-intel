@@ -39,29 +39,43 @@ async function run() {
     throw err;
   }
 
-  // Umbrella reporting date enforcement (aligns with current operational batch date)
-  const umbrellaReportingDate = "2026-11-16";
+  // Dynamically generate current UTC date instead of hardcoding
+  const now = new Date();
+  const currentReportingDate = now.toISOString().split('T')[0];
+
   if (newData.records && Array.isArray(newData.records)) {
     newData.records = newData.records.map(record => ({
       ...record,
-      reportingDate: umbrellaReportingDate
+      reportingDate: record.reportingDate || currentReportingDate
     }));
   }
 
-  const masterPath = path.join('data', 'master-policing-telemetry.json');
-  let masterData = { lastUpdated: umbrellaReportingDate, records: [] };
-  if (fs.existsSync(masterPath)) {
-    masterData = JSON.parse(fs.readFileSync(masterPath, 'utf8'));
+  // Ensure the target directory exists
+  const targetDir = path.join('nov2026');
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
   }
 
-  masterData.lastUpdated = umbrellaReportingDate;
+  const masterPath = path.join('nov2026', 'master-data.json');
+  let masterData = { lastUpdated: currentReportingDate, activeMonth: "November 2026", records: [] };
+  
+  if (fs.existsSync(masterPath)) {
+    try {
+      masterData = JSON.parse(fs.readFileSync(masterPath, 'utf8'));
+    } catch (e) {
+      console.warn('Existing master-data.json could not be parsed, initializing fresh container.');
+    }
+  }
+
+  masterData.lastUpdated = currentReportingDate;
+  masterData.activeMonth = "November 2026";
 
   if (newData.records && Array.isArray(newData.records)) {
     masterData.records.unshift(...newData.records);
   }
 
   fs.writeFileSync(masterPath, JSON.stringify(masterData, null, 2));
-  console.log('Successfully updated data/master-policing-telemetry.json with incidence and reporting date separation.');
+  console.log('Successfully updated nov2026/master-data.json with dynamic telemetry records.');
 
   // Automatically trigger the ticker feed generator to refresh live-ticker-feed.json
   console.log('Executing ticker feed update script...');
