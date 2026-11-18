@@ -15,12 +15,13 @@ function runTicker() {
       records.forEach(rec => {
         const stateName = rec.stateName || rec.state || 'State';
         const controlRating = rec.metrics && rec.metrics.controlRating ? rec.metrics.controlRating : 'ACTIVE';
+        const sps = rec.metrics && rec.metrics.sps !== undefined ? rec.metrics.sps : '0.0';
         const headlineText = rec.headline || 'Operational telemetry update compiled.';
         
         headlines.push({
           date: rec.incidenceDate || new Date().toISOString().split('T')[0],
           category: 'POLICING INTELLIGENCE',
-          text: `${stateName} Command (${controlRating}): ${headlineText}`,
+          text: `${stateName} Command (${controlRating} - SPS: ${sps}): ${headlineText}`,
           url: '/p/state-policing-intelligence.html'
         });
       });
