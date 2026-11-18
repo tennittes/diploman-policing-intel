@@ -5,14 +5,13 @@ on:
     branches: [ main, master ]
     paths:
       - 'nov2026/master-data.json'
-      - 'update-ticker.js'
+      - 'scripts/update-ticker.js'
   workflow_dispatch:
   schedule:
     - cron: '0 */6 * * *' # Runs every 6 hours
 
 jobs:
   build-ticker:
-  
     runs-on: ubuntu-latest
 
     permissions:
@@ -28,7 +27,7 @@ jobs:
         node-version: '20'
 
     - name: Run Ticker Update Script
-      run: node update-ticker.js
+      run: node scripts/update-ticker.js
 
     - name: Commit and push generated ticker feed
       run: |
