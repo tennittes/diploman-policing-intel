@@ -5,6 +5,24 @@ import { execSync } from 'child_process';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+const MONTH_FOLDERS = [
+  'jan', 'feb', 'mar', 'apr', 'may', 'jun',
+  'jul', 'aug', 'sep', 'oct', 'nov', 'dec'
+];
+
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+function getIsoWeekNumber(date) {
+  const utcDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const dayNum = utcDate.getUTCDay() || 7;
+  utcDate.setUTCDate(utcDate.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(utcDate.getUTCFullYear(), 0, 1));
+  return Math.ceil((((utcDate - yearStart) / 86400000) + 1) / 7);
+}
+
 async function run() {
   const inputPath = path.join('data', 'incoming-police-raw.txt');
   const promptPath = path.join('prompts', 'policing-extraction-prompt.txt');
@@ -24,7 +42,7 @@ async function run() {
   const finalPrompt = promptTemplate.replace('{{RAW_PRESS_RELEASES_TEXT}}', rawText);
 
   console.log('Sending raw press releases to Gemini API for policing telemetry extraction...');
-  
+
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash',
     contents: finalPrompt
@@ -39,12 +57,14 @@ async function run() {
     throw err;
   }
 
-  // Dynamically generate current UTC date instead of hardcoding
   const now = new Date();
-  const currentReportingDate = now.toISOString().split('T')[0];
+  const year = now.getUTCFullYear();
+  const monthIdx = now.getUTCMonth();
   const dayNumber = now.getUTCDate();
-  
-  // Format display date (e.g., "Tuesday, November 17, 2026")
+  const weekNumber = getIsoWeekNumber(now);
+  const folderName = `${MONTH_FOLDERS[monthIdx]}${year}`;
+  const activeMonthLabel = `${MONTH_NAMES[monthIdx]} ${year}`;
+
   const displayDate = now.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -53,20 +73,20 @@ async function run() {
     timeZone: 'UTC'
   });
 
-  // Normalize incoming records to match the B4 schema requirements
   let incomingRecords = newData.records || newData.globalCodeData_B4 || [];
-  
-  incomingRecords = incomingRecords.map(record => {
-    // Remove reportingDate if present
+
+  incomingRecords = incomingRecords.map((record, idx) => {
     delete record.reportingDate;
 
-    const stateName = record.stateName || record.state || "FCT Abuja";
+    const stateName = record.stateName || record.state || 'FCT Abuja';
     const stateKey = record.stateKey || stateName.toUpperCase();
 
     return {
-      dayNumber: record.dayNumber || dayNumber,
-      stateKey: stateKey,
-      stateName: stateName,
+      weekNumber: record.weekNumber ?? weekNumber,
+      dayNumber: record.dayNumber ?? dayNumber,
+      rankingNumber: record.rankingNumber ?? (idx + 1),
+      stateKey,
+      stateName,
       displayDate: record.displayDate || displayDate,
       command: record.command,
       commandLead: record.commandLead,
@@ -81,43 +101,37 @@ async function run() {
     };
   });
 
-  // Ensure the target directory exists
-  const targetDir = path.join('nov2026');
+  const targetDir = path.join(folderName);
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
   }
 
-  const masterPath = path.join('nov2026', 'master-data.json');
-  let masterData = { 
-    lastUpdated: currentReportingDate, 
-    activeMonth: "November 2026", 
-    globalCodeData_B4: [] 
+  const masterPath = path.join(targetDir, 'master-data.json');
+  let masterData = {
+    activeMonth: activeMonthLabel,
+    globalCodeData_B4: []
   };
-  
+
   if (fs.existsSync(masterPath)) {
     try {
       const existing = JSON.parse(fs.readFileSync(masterPath, 'utf8'));
+      masterData.activeMonth = activeMonthLabel;
       masterData.globalCodeData_B4 = existing.globalCodeData_B4 || existing.records || [];
     } catch (e) {
       console.warn('Existing master-data.json could not be parsed, initializing fresh container.');
     }
   }
 
-  masterData.lastUpdated = currentReportingDate;
-  masterData.activeMonth = "November 2026";
-
   if (incomingRecords.length > 0) {
     masterData.globalCodeData_B4.unshift(...incomingRecords);
   }
 
   fs.writeFileSync(masterPath, JSON.stringify(masterData, null, 2));
-  console.log('Successfully updated nov2026/master-data.json with dynamic telemetry records (B4 format).');
+  console.log(`Successfully updated ${folderName}/master-data.json with telemetry records (B4 format).`);
 
-  // Automatically trigger the ticker feed generator to refresh live-ticker-feed.json
   console.log('Executing ticker feed update script...');
   execSync('node scripts/update-ticker.js', { stdio: 'inherit' });
 
-  // Clear the incoming raw text file for subsequent batches
   fs.writeFileSync(inputPath, '');
   console.log('Cleared data/incoming-police-raw.txt for subsequent batches.');
 }
