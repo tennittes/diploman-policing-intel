@@ -32,14 +32,18 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          mkdir -p data nov2026
+          mkdir -p data
           node scripts/update-policing.js
 
-      - name: Commit & Push Master Data Updates
+      - name: Commit & Push Master Data & Ticker Updates
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add nov2026/master-data.json || true
+          git add "*202*/master-data.json" data/live-ticker-feed.json data/incoming-police-raw.txt || true
           git status
-          git diff --staged --quiet || git commit -m "chore: automated daily policing intel telemetry update (B4 format) [skip ci]"
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: automated daily policing intel telemetry update (B4 format) [skip ci]"
+            git push
+          else
+            echo "No telemetry or ticker changes to commit."
+          fi
