@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'nov2026/master-data.json'
+      - '*202*/master-data.json'
       - 'scripts/update-ticker.js'
   workflow_dispatch:
   schedule:
@@ -18,20 +18,25 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-    - name: Run Ticker Update Script
-      run: node scripts/update-ticker.js
+      - name: Run Ticker Update Script
+        run: node scripts/update-ticker.js
 
-    - name: Commit and push generated ticker feed
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add data/live-ticker-feed.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "chore: automated live ticker feed update [skip ci]" && git push)
+      - name: Commit and push generated ticker feed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/live-ticker-feed.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: automated live ticker feed update [skip ci]"
+            git push
+          else
+            echo "No ticker feed changes to commit."
+          fi
