@@ -1,0 +1,36 @@
+{
+  "newsReports": [
+    {
+      "type": "scored_brief",
+      "id": "scored-pol-2026-11-20-01",
+      "published": false,
+      "vertical": "policingintel",
+      "source_domain": "https://policingintel.diplomantimes.com/",
+      "angle_id": "01",
+      "angle_family": "baseline_deviations",
+      "opening_class": "entity_first",
+      "headline_skeleton": "[Command] Command Climbs +[Δ] to [Score] SPS After [Tactical Operation]",
+      "lede_rule": "Sentence 1 states the exact breakout score and positive delta alongside the concrete real-world trigger; Sentence 2 provides the secondary contrast metric or runner-up context.",
+      "title": "Kwara Command Climbs +2.9 to 6.9 SPS as High-Watch Threat Baselines Hold Steady",
+      "labels": [
+        "News Report",
+        "Diploman Times",
+        "Policing Intel",
+        "Kwara",
+        "Angle 01"
+      ],
+      "featured_image": {
+        "src": "",
+        "alt": "Kwara State Police Command Security Performance Score Telemetry",
+        "target_url": "https://www.diplomantimes.com"
+      },
+      "lead_narrative": "Kwara State Police Command led national daily enforcement performance across 37 jurisdictions on 2026-11-20 at 6.9 SPS (+2.9), driven by coordinated operational output. Meanwhile, Borno (5.5 JTI), Zamfara (5.1 JTI), Yobe (4.8 JTI) remained the highest-watch threat jurisdictions with zero net daily movement (+0.0).",
+      "editorial_notice": "This Scored Intelligence Brief translates Security Performance Score (SPS) and Jurisdiction Threat Index (JTI) command telemetry across 37 Nigerian jurisdictions into verified news coverage for Diploman Times.",
+      "story_body": [
+        "Structured under Angle 01 (baseline_deviations), daily command telemetry places Kwara (6.9 SPS, +2.9), Osun (6.6 SPS, +2.6), Nasarawa (6.4 SPS, +2.4) at the top of the Security Performance Score rankings.",
+        "Each command's SPS composite weighs Patrol & Response Index (PRI, 35%), Crime Deterrence Index (CDI, 40%), and Rapid Policing Index (RPI, 25%) against calibrated 5.5–7.5 baseline bands.",
+        "On the Jurisdiction Threat Index (JTI, 2.5–4.5 baseline band), persistent readings in Borno (5.5 JTI), Zamfara (5.1 JTI), Yobe (4.8 JTI) underscore ongoing containment priorities across the federation."
+      ]
+    }
+  ]
+}
