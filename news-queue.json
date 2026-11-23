@@ -10,7 +10,7 @@
       "angle_id": "01",
       "angle_family": "baseline_deviations",
       "opening_class": "entity_first",
-      "headline_skeleton": "[Command] Command Climbs +[Δ] to [Score] SPS After [Tactical Operation]",
+      "headline_skeleton": "[Command] Command Climbs +[\u0394] to [Score] SPS After [Tactical Operation]",
       "lede_rule": "Sentence 1 states the exact breakout score and positive delta alongside the concrete real-world trigger; Sentence 2 provides the secondary contrast metric or runner-up context.",
       "title": "Kwara Posts +2.9 SPS Shift as Kwara Leads on 6.9 SPS",
       "summary": "Kwara registered a +2.9 SPS gain while Kwara led the 37-jurisdiction rankings at 6.9 SPS.",
@@ -33,7 +33,11 @@
         "Lower-ranked jurisdictions on the SPS board include Zamfara (4 SPS, 0), Yobe (4 SPS, 0), and Taraba (4 SPS, 0), illustrating the spread between frontrunners and trailing states as of 2026-11-20.",
         "Regional distribution across geopolitical zones spans NC (7), SW (6), SS (6), SE (5), NE (6), NW (7), capturing broad subnational comparisons without relying on single-location snapshots."
       ],
-      "queued_at_utc": "2026-11-23T15:25:10.715Z"
+      "queued_at_utc": "2026-11-23T15:25:10.715Z",
+      "blogger_draft": true,
+      "blogger_post_id": "1363519037414014627",
+      "url": "https://www.diplomantimes.com/",
+      "permalink": "https://www.diplomantimes.com/"
     }
   ]
 }
