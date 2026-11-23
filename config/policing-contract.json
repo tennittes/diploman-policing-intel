@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "vertical": "policingintel",
+  "display_name": "Diploman Policing Intel",
+  "domain": "https://policingintel.diplomantimes.com/",
+  "brand_colors": {
+    "primary": "#991b1b",
+    "secondary": "#450a0a",
+    "accent": "#fca5a5"
+  },
+  "timezone": "UTC",
+  "rollover": {
+    "weekly_reset_day_utc": 4,
+    "weekly_reset_hour_utc": 0,
+    "progressive_window_days": 5
+  },
+  "coverage": {
+    "scope_type": "jurisdictions",
+    "expected_count": 37,
+    "entities": [
+      "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue",
+      "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu",
+      "FCT", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi",
+      "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun",
+      "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
+    ]
+  },
+  "metrics": {
+    "primary": {
+      "key": "SPS",
+      "label": "Security Performance Score",
+      "polarity": "higher_is_stronger",
+      "scale_min": 0.0,
+      "scale_max": 10.0,
+      "baseline_min": 5.5,
+      "baseline_max": 7.5,
+      "weights": {
+        "PRI": 0.35,
+        "CDI": 0.40,
+        "RPI": 0.25
+      },
+      "breakout_delta_threshold": 1.5,
+      "deficit_delta_threshold": -1.0
+    },
+    "secondary": {
+      "key": "JTI",
+      "label": "Jurisdiction Threat Index",
+      "polarity": "lower_is_stronger",
+      "scale_min": 0.0,
+      "scale_max": 10.0,
+      "baseline_min": 2.5,
+      "baseline_max": 4.5
+    },
+    "supporting_indices": ["PRI", "CDI", "RPI", "CCI"]
+  },
+  "required_summary_fields": [
+    "run_date_utc",
+    "vertical",
+    "jurisdiction_count",
+    "top_primary_entity",
+    "top_primary_score",
+    "maxPositiveDelta",
+    "maxNegativeDelta"
+  ]
+}
