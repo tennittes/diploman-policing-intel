@@ -13,7 +13,7 @@
       "headline_skeleton": "[Command] Command Climbs +[Δ] to [Score] SPS After [Tactical Operation]",
       "lede_rule": "Sentence 1 states the exact breakout score and positive delta alongside the concrete real-world trigger; Sentence 2 provides the secondary contrast metric or runner-up context.",
       "title": "Kwara Posts +2.9 SPS Shift as Kwara Leads on 6.9 SPS",
-      "summary": "Kwara recorded a +2.9 SPS shift on 2026-11-20 UTC, while Kwara held the overall Security Performance Score lead at 6.9 SPS across 37 jurisdictions. Daily shifts across the board spanned -2.9 to +2.9 SPS.",
+      "summary": "Kwara registered a +2.9 SPS gain while Kwara led the 37-jurisdiction rankings at 6.9 SPS.",
       "labels": [
         "News Report",
         "Diploman Times",
@@ -26,14 +26,14 @@
         "alt": "Kwara Policing Intel Telemetry",
         "target_url": "https://www.diplomantimes.com"
       },
-      "lead_narrative": "Kwara recorded a +2.9 SPS shift on 2026-11-20 UTC, while Kwara held the overall Security Performance Score lead at 6.9 SPS across 37 jurisdictions. Daily shifts across the board spanned -2.9 to +2.9 SPS.",
+      "lead_narrative": "Kwara logged the sharpest upward SPS movement at +2.9 on 2026-11-20, while Kwara maintained the overall Security Performance Score lead at 6.9 SPS across 37 jurisdictions. Daily changes across the federation ranged between -2.9 and +2.9 SPS.",
       "story_body": [
-        "Leading Security Performance Score positions across the 37 jurisdictions on 2026-11-20 UTC stand at 1. Kwara (6.9 SPS, +2.9), 2. Osun (6.6 SPS, +2.6), and 3. Nasarawa (6.4 SPS, +2.4). Kwara holds a 0.3-point margin over Osun in the primary ranking.",
+        "Leading Security Performance Score positions across the 37 jurisdictions on 2026-11-20 stand at 1. Kwara (6.9 SPS, +2.9), 2. Osun (6.6 SPS, +2.6), and 3. Nasarawa (6.4 SPS, +2.4). Kwara holds a 0.3-point margin over Osun in the primary ranking.",
         "On the Jurisdiction Threat Index side, notable readings include Borno (5.5 JTI, 0), Zamfara (5.1 JTI, 0), and Yobe (4.8 JTI, 0), highlighting jurisdictions where secondary risk or instability indicators behave differently from top SPS totals.",
-        "Lower-ranked jurisdictions on the SPS board include Zamfara (4 SPS, 0), Yobe (4 SPS, 0), and Taraba (4 SPS, 0), illustrating the spread between frontrunners and trailing states as of 2026-11-20 UTC.",
+        "Lower-ranked jurisdictions on the SPS board include Zamfara (4 SPS, 0), Yobe (4 SPS, 0), and Taraba (4 SPS, 0), illustrating the spread between frontrunners and trailing states as of 2026-11-20.",
         "Regional distribution across geopolitical zones spans NC (7), SW (6), SS (6), SE (5), NE (6), NW (7), capturing broad subnational comparisons without relying on single-location snapshots."
       ],
-      "queued_at_utc": "2026-11-23T12:53:00.078Z"
+      "queued_at_utc": "2026-11-23T15:25:10.715Z"
     }
   ]
 }
