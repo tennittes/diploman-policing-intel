@@ -1,7 +1,6 @@
 {
   "schema_version": "1.0.0",
   "vertical": "policingintel",
-  "cooldown_window_runs": 7,
   "entries": [
     {
       "run_date_utc": "2026-11-20",
@@ -14,6 +13,14 @@
       "angle_id": "11",
       "family": "zonal_tier_league_clusters",
       "opening_class": "cluster_first"
+    },
+    {
+      "run_date_utc": "2026-11-24",
+      "vertical": "policingintel",
+      "angle_id": "16",
+      "angle_name": "fiscal_capital_or_funding_trigger",
+      "family": "operational_event_triggers",
+      "opening_class": "entity_first"
     }
   ]
 }

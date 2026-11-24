@@ -1,1 +1,41 @@
-{"newsReports": []}
+{
+  "newsReports": [
+    {
+      "type": "scored_brief",
+      "id": "scored-pol-2026-11-24",
+      "run_date_utc": "2026-11-24",
+      "published": false,
+      "target_url": "https://www.diplomantimes.com",
+      "vertical": "policingintel",
+      "source_domain": "https://policingintel.diplomantimes.com/",
+      "angle_id": "16",
+      "angle_name": "fiscal_capital_or_funding_trigger",
+      "angle_family": "operational_event_triggers",
+      "opening_class": "entity_first",
+      "headline_skeleton": "State Security Funding Boost Reinforces [Command] Operational Readiness at [Score] SPS",
+      "lede_rule": "Sentence 1 links the budget, capital allocation, or resource commitment to the updated score; Sentence 2 details the sector scope or follow-on effect.",
+      "title": "Operational Readiness Reinforces Niger Lead at 7 SPS Across 37 Jurisdictions",
+      "summary": "Niger maintains its SPS lead at 7 while Niger gains +3.",
+      "labels": [
+        "News Report",
+        "Diploman Times",
+        "Policing Intel",
+        "Niger",
+        "Angle 16"
+      ],
+      "featured_image": {
+        "src": "",
+        "alt": "Niger Policing Intel Telemetry",
+        "target_url": "https://www.diplomantimes.com"
+      },
+      "lead_narrative": "Resource and operational execution keep Niger at the summit of the Security Performance Score standings on 7 SPS as of 2026-11-24, while Niger posts the day's strongest upward gain at +3 SPS.",
+      "story_body": [
+        "Leading Security Performance Score positions across the 37 jurisdictions on 2026-11-24 stand at 1. Niger (7 SPS, +3), 2. Kano (6.8 SPS, +2.8), and 3. Jigawa (6.6 SPS, +2.6). Niger holds a 0.20-point margin over Kano in the primary ranking.",
+        "On the Jurisdiction Threat Index side, notable readings include Zamfara (5.1 JTI, 0), Sokoto (4.5 JTI, 0), and Katsina (4.4 JTI, 0), highlighting jurisdictions where secondary risk or instability indicators behave differently from top SPS totals.",
+        "Lower-ranked jurisdictions on the SPS board include Sokoto (4 SPS, 0), Rivers (4 SPS, 0), and Plateau (4 SPS, 0), illustrating the spread between frontrunners and trailing states as of 2026-11-24.",
+        "Regional distribution across geopolitical zones spans NC (7), NW (7), NE (6), SS (6), SE (5), SW (6), capturing broad subnational comparisons without relying on single-location snapshots."
+      ],
+      "queued_at_utc": "2026-11-24T14:41:06.316Z"
+    }
+  ]
+}
