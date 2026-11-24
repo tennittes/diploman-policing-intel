@@ -1,13 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": "2026-11-20",
+  "run_date_utc": "2026-11-24",
   "vertical": "policingintel",
   "domain": "https://policingintel.diplomantimes.com/",
   "is_thursday_rollover": false,
-  "selected_angle_id": "01",
-  "family": "baseline_deviations",
-  "opening_class": "entity_first",
-  "headline_skeleton": "[Command] Command Climbs +[Δ] to [Score] SPS After [Tactical Operation]",
-  "lede_rule": "Sentence 1 states the exact breakout score and positive delta alongside the concrete real-world trigger; Sentence 2 provides the secondary contrast metric or runner-up context.",
-  "excluded_recent_ids": []
+  "selected_angle_id": "11",
+  "family": "zonal_tier_league_clusters",
+  "opening_class": "cluster_first",
+  "headline_skeleton": "[Zone] Commands Lead Daily Enforcement Telemetry With Coordinated Tactical Gains",
+  "lede_rule": "Sentence 1 identifies the geopolitical zone or league cluster driving broad movement; Sentence 2 specifies the leading states, commands, or clubs and their scores.",
+  "excluded_recent_ids": [
+    "01"
+  ]
 }

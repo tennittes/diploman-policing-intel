@@ -8,6 +8,12 @@
       "angle_id": "01",
       "family": "baseline_deviations",
       "opening_class": "entity_first"
+    },
+    {
+      "run_date_utc": "2026-11-24",
+      "angle_id": "11",
+      "family": "zonal_tier_league_clusters",
+      "opening_class": "cluster_first"
     }
   ]
 }
