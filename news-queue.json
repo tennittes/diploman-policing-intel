@@ -2,6 +2,43 @@
   "newsReports": [
     {
       "type": "scored_brief",
+      "id": "scored-pol-2026-11-25",
+      "run_date_utc": "2026-11-25",
+      "published": false,
+      "target_url": "https://www.diplomantimes.com",
+      "vertical": "policingintel",
+      "source_domain": "https://policingintel.diplomantimes.com/",
+      "angle_id": "25",
+      "angle_name": "month_to_date_baseline_recalibration",
+      "angle_family": "temporal_rollover_trajectory",
+      "opening_class": "qualifier_first",
+      "headline_skeleton": "Month-to-Date Command Telemetry: [Command] Leads Net SPS Gains Across 37 Jurisdictions",
+      "lede_rule": "Sentence 1 presents the month-to-date cumulative leader and net monthly movement; Sentence 2 notes the baseline recalibration or secondary metric standing.",
+      "title": "Cumulative Command Telemetry: Kebbi Leads +2.3 SPS Gains Behind Osun",
+      "summary": "Kebbi leads +2.3 SPS gains while Osun holds 6.8 SPS.",
+      "labels": [
+        "News Report",
+        "Diploman Times",
+        "Policing Intel",
+        "Osun",
+        "Angle 25"
+      ],
+      "featured_image": {
+        "src": "",
+        "alt": "Osun Policing Intel Telemetry",
+        "target_url": "https://www.diplomantimes.com"
+      },
+      "lead_narrative": "Cumulative subnational telemetry across the 37 jurisdictions as of 2026-11-25 highlights Kebbi (+2.3 SPS) for net upward movement while Osun anchors the overall Security Performance Score table at 6.8 SPS.",
+      "story_body": [
+        "Leading Security Performance Score positions across the 37 jurisdictions on 2026-11-25 stand at 1. Osun (6.8 SPS, 0), 2. Benue (6.6 SPS, +0.8), and 3. Kebbi (6.3 SPS, +2.3). Osun holds a 0.2-point margin over Benue in the primary ranking.",
+        "On the Jurisdiction Threat Index side, notable readings include Zamfara (5.1 JTI, 0), Borno (4.9 JTI, +0.6), and Yobe (4.6 JTI, 0), highlighting jurisdictions where secondary risk or instability indicators behave differently from top SPS totals.",
+        "Lower-ranked jurisdictions on the SPS board include Zamfara (4.0 SPS, -1.2), Yobe (4.0 SPS, 0), and Taraba (4.0 SPS, -1.2), illustrating the spread between frontrunners and trailing states as of 2026-11-25.",
+        "Regional distribution across geopolitical zones spans SW (6), NC (7), NW (7), SS (6), NE (6), SE (5), capturing broad subnational comparisons without relying on single-location snapshots."
+      ],
+      "queued_at_utc": "2026-11-25T09:26:17.267Z"
+    },
+    {
+      "type": "scored_brief",
       "id": "scored-pol-2026-11-24",
       "run_date_utc": "2026-11-24",
       "published": true,

@@ -21,6 +21,14 @@
       "angle_name": "fiscal_capital_or_funding_trigger",
       "family": "operational_event_triggers",
       "opening_class": "entity_first"
+    },
+    {
+      "run_date_utc": "2026-11-25",
+      "vertical": "policingintel",
+      "angle_id": "25",
+      "angle_name": "month_to_date_baseline_recalibration",
+      "family": "temporal_rollover_trajectory",
+      "opening_class": "qualifier_first"
     }
   ]
 }
