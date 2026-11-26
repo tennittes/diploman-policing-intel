@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": "2026-11-25",
+  "run_date_utc": "2026-11-26",
   "vertical": "policingintel",
   "domain": "https://policingintel.diplomantimes.com/",
-  "is_thursday_rollover": false,
-  "selected_angle_id": "25",
-  "angle_name": "month_to_date_baseline_recalibration",
+  "is_thursday_rollover": true,
+  "selected_angle_id": "23",
+  "angle_name": "thursday_weekly_rollover_anchor",
   "family": "temporal_rollover_trajectory",
-  "opening_class": "qualifier_first",
-  "headline_skeleton": "Month-to-Date Command Telemetry: [Command] Leads Net SPS Gains Across 37 Jurisdictions",
-  "lede_rule": "Sentence 1 presents the month-to-date cumulative leader and net monthly movement; Sentence 2 notes the baseline recalibration or secondary metric standing.",
+  "opening_class": "rollover_first",
+  "headline_skeleton": "Weekly Policing Rollover: [Command] Tops 7-Day Enforcement at [Score] SPS",
+  "lede_rule": "Sentence 1 summarizes the 7-day window close or Thursday rollover headline result; Sentence 2 highlights the top performer and key metric divergence.",
   "weak_points_context": {
     "has_divergence": false,
     "top_club": null,
@@ -20,10 +20,11 @@
   "excluded_recent_ids": [
     "01",
     "11",
-    "16"
+    "16",
+    "25"
   ],
   "excluded_recent_families": [
-    "zonal_tier_league_clusters",
-    "operational_event_triggers"
+    "operational_event_triggers",
+    "temporal_rollover_trajectory"
   ]
 }
