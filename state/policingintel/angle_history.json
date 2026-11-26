@@ -37,6 +37,14 @@
       "angle_name": "thursday_weekly_rollover_anchor",
       "family": "temporal_rollover_trajectory",
       "opening_class": "rollover_first"
+    },
+    {
+      "run_date_utc": "2026-11-27",
+      "vertical": "policingintel",
+      "angle_id": "09",
+      "angle_name": "stability_or_containment_led",
+      "family": "paired_metric_tension",
+      "opening_class": "metric_first"
     }
   ]
 }

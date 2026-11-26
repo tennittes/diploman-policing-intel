@@ -2,6 +2,45 @@
   "newsReports": [
     {
       "type": "scored_brief",
+      "id": "scored-pol-2026-11-27",
+      "run_date_utc": "2026-11-27",
+      "published": false,
+      "target_url": "https://www.diplomantimes.com",
+      "vertical": "policingintel",
+      "state": "Lagos",
+      "source_domain": "https://policingintel.diplomantimes.com/",
+      "angle_id": "09",
+      "angle_name": "stability_or_containment_led",
+      "angle_family": "paired_metric_tension",
+      "opening_class": "metric_first",
+      "headline_skeleton": "Containment Discipline Keeps [Command] at [Score] JTI Baseline Across [Corridor]",
+      "lede_rule": "Sentence 1 leads with the stability, threat containment, or defensive half-control reading; Sentence 2 connects it to the overall ranking or score.",
+      "title": "Containment Discipline Keeps Lagos at 1.5 JTI Baseline Across Federation",
+      "summary": "Lagos holds the lowest JTI reading (1.5) while Ogun leads SPS (7.0).",
+      "social_excerpt": "Containment Discipline Keeps Lagos at 1.5 JTI Baseline Across Federation\n\nLagos holds the lowest JTI reading (1.5) while Ogun leads SPS (7.0).\n\nRead the full 37-jurisdiction brief: https://www.diplomantimes.com",
+      "labels": [
+        "News Report",
+        "Diploman Times",
+        "Policing Intel",
+        "Lagos",
+        "Angle 09"
+      ],
+      "featured_image": {
+        "src": "",
+        "alt": "Lagos Policing Intel Telemetry",
+        "target_url": "https://www.diplomantimes.com"
+      },
+      "lead_narrative": "Tight containment discipline keeps Lagos at a federation-low 1.5 JTI on 2026-11-27, anchoring institutional stability while Ogun paces the primary Security Performance Score table at 7.0 SPS.",
+      "story_body": [
+        "Leading Security Performance Score positions across the 37 jurisdictions on 2026-11-27 stand at 1. Ogun (7.0 SPS, +0.4), 2. Borno (6.8 SPS, +2.8), and 3. Enugu (6.7 SPS, +0.1). Ogun holds a 0.2-point margin over Borno in the primary ranking.",
+        "On the Jurisdiction Threat Index side, notable readings include Zamfara (5.1 JTI, 0), Borno (4.9 JTI, 0), and Yobe (4.6 JTI, 0), highlighting jurisdictions where secondary risk or instability indicators behave differently from top SPS totals.",
+        "Lower-ranked jurisdictions on the SPS board include Zamfara (4.0 SPS, 0), Yobe (4.0 SPS, 0), and Taraba (4.0 SPS, 0), illustrating the spread between frontrunners and trailing states as of 2026-11-27.",
+        "Regional distribution across geopolitical zones spans SW (6), NE (6), SE (5), SS (6), NC (7), NW (7), capturing broad subnational comparisons without relying on single-location snapshots."
+      ],
+      "queued_at_utc": "2026-11-26T22:25:15.888Z"
+    },
+    {
+      "type": "scored_brief",
       "id": "scored-pol-2026-11-26",
       "run_date_utc": "2026-11-26",
       "published": true,

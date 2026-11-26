@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "run_date_utc": "2026-11-26",
+  "run_date_utc": "2026-11-27",
   "vertical": "policingintel",
   "domain": "https://policingintel.diplomantimes.com/",
-  "is_thursday_rollover": true,
-  "selected_angle_id": "23",
-  "angle_name": "thursday_weekly_rollover_anchor",
-  "family": "temporal_rollover_trajectory",
-  "opening_class": "rollover_first",
-  "headline_skeleton": "Weekly Policing Rollover: [Command] Tops 7-Day Enforcement at [Score] SPS",
-  "lede_rule": "Sentence 1 summarizes the 7-day window close or Thursday rollover headline result; Sentence 2 highlights the top performer and key metric divergence.",
+  "is_thursday_rollover": false,
+  "selected_angle_id": "09",
+  "angle_name": "stability_or_containment_led",
+  "family": "paired_metric_tension",
+  "opening_class": "metric_first",
+  "headline_skeleton": "Containment Discipline Keeps [Command] at [Score] JTI Baseline Across [Corridor]",
+  "lede_rule": "Sentence 1 leads with the stability, threat containment, or defensive half-control reading; Sentence 2 connects it to the overall ranking or score.",
   "weak_points_context": {
     "has_divergence": false,
     "top_club": null,
@@ -21,10 +21,10 @@
     "01",
     "11",
     "16",
-    "25"
+    "25",
+    "23"
   ],
   "excluded_recent_families": [
-    "operational_event_triggers",
     "temporal_rollover_trajectory"
   ]
 }
